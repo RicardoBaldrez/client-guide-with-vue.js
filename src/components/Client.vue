@@ -1,6 +1,6 @@
 <template>
     <div id='client'>
-        <input type="text" name="name" id="name" :value="name">
+        <input type="text" name="name" id="name" v-model="name">
         <hr>
         <h2 id='name-client'>{{ name }}</h2>
         <p>Description of client: {{ description }} </p>
