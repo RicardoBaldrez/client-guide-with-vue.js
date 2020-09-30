@@ -1,25 +1,30 @@
 <template>
     <div id='client'>
-        <h2>{{ subtext }}</h2>
-        <h3>Description of client ... </h3>
+        <input type="text" name="name" id="name" :value="name">
+        <hr>
+        <h2 id='name-client'>{{ name }}</h2>
+        <p>Description of client: {{ description }} </p>
+        <hr>
+        <input type="text" name="age" id="age" :value="age">
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Client',
-        props: {
-            subtext: String
+        data() {
+            return {
+                name: 'Ricardo',
+                email: 'ricardo.baldrez@gmail.com',
+                age: 30,
+                description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
+            }
         }
     }
 </script>
 
 <style scoped>
     #client {
-        color: rgb(0, 255, 64);
-        background-color: black;
         max-width: 600px;
-        padding: 20px;
     }
 
     h2 {
