@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <h1>Guide of clients</h1>
-    <Client :client="clientDefault" />
-    <Client :name="nameDefault" email="ricardo.baldrez@gmail.com" age="30" />
-    <Client name="Maria" email="ricardo.baldrez@gmail.com" age="30" />
+    <Client :client="clientDefault" :showAge="false" />
+    <Client :client="clientDefault" :showAge="true" />
+    <Client :client="clientDefault" :showAge="false" />
   </div>
 </template>
 

@@ -2,7 +2,9 @@
     <div id='client'>
         <h4>Nome: {{ client.name }} </h4>
         <p>Email: {{ client.email }}</p>
-        <p>Idade: {{ client.age }}</p>
+        <p v-if="showAge === true">Idade: {{ client.age }}</p>
+        <p v-else style="color: red; font-weight: bold;">Usuário teve sua idade escondida</p>
+        <!-- <p v-show="showAge === true">Idade: {{ client.age }}</p> -->
     </div>
 </template>
 
@@ -14,10 +16,8 @@
             }
         },
         props: {
-            name: String,
-            email: String,
-            age: Number,
-            client: Object
+            client: Object,
+            showAge: Boolean
         }
     }
 </script>
