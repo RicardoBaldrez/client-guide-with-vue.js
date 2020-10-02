@@ -1,10 +1,10 @@
 <template>
-    <div id='client'>
+    <div :class="{'client' : !isPremium, 'client-premium' : isPremium}">
         <h4>Nome: {{ client.name }} </h4>
+        <hr>
         <p>Email: {{ client.email }}</p>
         <p v-if="showAge === true">Idade: {{ client.age }}</p>
         <p v-else style="color: red; font-weight: bold;">Usuário teve sua idade escondida</p>
-        <!-- <p v-show="showAge === true">Idade: {{ client.age }}</p> -->
     </div>
 </template>
 
@@ -12,7 +12,7 @@
     export default {
         data() {
             return {
-                
+                isPremium: true
             }
         },
         props: {
@@ -23,11 +23,20 @@
 </script>
 
 <style scoped>
-    #client {
+    .client {
         max-width: 600px;
-        background-color: #ece5e3;
+        background-color: #f0f0f0;
         padding: 2%;
         margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
+    .client-premium {
+        max-width: 600px;
+        background-color: #ffc400;
+        padding: 2%;
+        margin-bottom: 10px;
+        border-radius: 5px;
     }
 
     h4, p:last-child {
