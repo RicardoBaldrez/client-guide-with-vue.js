@@ -1,10 +1,11 @@
 <template>
-    <div :class="{'client' : !isPremium, 'client-premium' : isPremium}">
+    <div :class="isPremium ? 'client-premium' : 'client'">
         <h4>Nome: {{ client.name }} </h4>
         <hr>
         <p>Email: {{ client.email }}</p>
         <p v-if="showAge === true">Idade: {{ client.age }}</p>
         <p v-else style="color: red; font-weight: bold;">Usuário teve sua idade escondida</p>
+        <button @click="mudarCor($event)">Alternando entre usuário Premium & normal</button>
     </div>
 </template>
 
@@ -18,6 +19,12 @@
         props: {
             client: Object,
             showAge: Boolean
+        },
+        methods: {
+            mudarCor: function($event) {
+                console.log($event);
+                this.isPremium = !this.isPremium;
+            }
         }
     }
 </script>
