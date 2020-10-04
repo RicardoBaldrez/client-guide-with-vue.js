@@ -9,7 +9,7 @@
     <input type="email" placeholder="email" v-model="emailField">
     <input type="number" placeholder="age" v-model="ageField">
     <button @click="registerUser">Cadastrar</button>
-
+    <p class="error-form" v-if="gaveError">Verifique os campos e tente novamente!!!</p>
     <hr>
 
     <div v-for="(client, index) in clients" :key="client.id">
@@ -29,6 +29,7 @@
         nameField: '',
         emailField: '',
         ageField: '',
+        gaveError: false,
         clients: [
           {
             id: 1,
@@ -36,21 +37,7 @@
             email: "nathaliaop.2@hotmail.com",
             age: "26",
             showAge: true
-          },
-          {
-            id: 2,
-            name: "Ricardo",
-            email: "ricardo.baldrez@gmail.com",
-            age: "30",
-            showAge: false
-          },
-          {
-            id: 3,
-            name: "Maria",
-            email: "maria.baldrez@gmail.com",
-            age: "59",
-            showAge: true
-          },
+          }
         ]
       }
     },
@@ -59,10 +46,15 @@
     },
     methods: {
       registerUser: function() {
-        this.clients.push({ id: Date.now(), name: this.nameField, email: this.emailField, age: this.ageField });
-        this.nameField = "";
-        this.emailField = "";
-        this.ageField = "";
+        if (this.nameField == '' || this.emailField == '' || this.ageField == '') {
+          this.gaveError = true;
+        } else {
+          this.gaveError = false;
+          this.clients.push({ id: Date.now(), name: this.nameField, email: this.emailField, age: this.ageField });
+          this.nameField = "";
+          this.emailField = "";
+          this.ageField = "";
+        }
       }
     }
   }
@@ -76,5 +68,11 @@
 
   h1 {
     text-align: center;
+  }
+
+  .error-form {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
   }
 </style>
