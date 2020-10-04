@@ -1,7 +1,17 @@
 <template>
   <div id="app">
     <h1>Guide of clients</h1>
-    
+
+    <hr>
+
+    <h3>Cadastro:</h3>
+    <input type="text" placeholder="name" v-model="nameField">
+    <input type="email" placeholder="email" v-model="emailField">
+    <input type="number" placeholder="age" v-model="ageField">
+    <button @click="registerUser">Cadastrar</button>
+
+    <hr>
+
     <div v-for="(client, index) in clients" :key="client.id">
       <p>{{ index }}</p>
       <Client :client="client" :showAge="client.showAge" />
@@ -16,6 +26,9 @@
     name: 'App',
     data() {
       return {
+        nameField: '',
+        emailField: '',
+        ageField: '',
         clients: [
           {
             id: 1,
@@ -43,6 +56,14 @@
     },
     components: {
       Client
+    },
+    methods: {
+      registerUser: function() {
+        this.clients.push({ id: Date.now(), name: this.nameField, email: this.emailField, age: this.ageField });
+        this.nameField = "";
+        this.emailField = "";
+        this.ageField = "";
+      }
     }
   }
 </script>
