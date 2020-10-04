@@ -6,6 +6,7 @@
         <p v-if="showAge === true">Idade: {{ client.age }}</p>
         <p v-else style="color: red; font-weight: bold;">Usuário teve sua idade escondida</p>
         <button @click="mudarCor($event)">Alternando entre usuário Premium & normal</button>
+        <button @click="emitirEventoDelete($event)">Delete</button>
     </div>
 </template>
 
@@ -21,9 +22,11 @@
             showAge: Boolean
         },
         methods: {
-            mudarCor: function($event) {
-                console.log($event);
+            mudarCor: function() {
                 this.isPremium = !this.isPremium;
+            },
+            emitirEventoDelete: function() {
+                this.$emit('meDelete', { idClient: this.client.id, component: this });
             }
         }
     }

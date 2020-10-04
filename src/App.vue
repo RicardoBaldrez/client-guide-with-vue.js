@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <h1>Guide of clients</h1>
-
     <hr>
-
     <h3>Cadastro:</h3>
     <input type="text" placeholder="name" v-model="nameField">
     <input type="email" placeholder="email" v-model="emailField">
@@ -11,10 +9,9 @@
     <button @click="registerUser">Cadastrar</button>
     <p class="error-form" v-if="gaveError">Verifique os campos e tente novamente!!!</p>
     <hr>
-
     <div v-for="(client, index) in clients" :key="client.id">
       <p>{{ index }}</p>
-      <Client :client="client" :showAge="client.showAge" />
+      <Client :client="client" :showAge="client.showAge" @meDelete="deleteUser($event)" />
     </div>
   </div>
 </template>
@@ -55,6 +52,11 @@
           this.emailField = "";
           this.ageField = "";
         }
+      },
+      deleteUser: function($event) {
+        const id = $event.idClient;
+        const fullClients = this.clients.filter(client => client.id != id);
+        this.clients = fullClients;
       }
     }
   }
