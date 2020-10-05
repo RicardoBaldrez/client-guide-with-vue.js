@@ -2,7 +2,7 @@
     <div :class="isPremium ? 'client-premium' : 'client'">
         <h4>Nome: {{ client.name }} </h4>
         <hr>
-        <p>Email: {{ client.email }}</p>
+        <p>Email: {{ client.email | processarEmail }}</p>
         <p v-if="showAge === true">Idade: {{ client.age }}</p>
         <p v-else style="color: red; font-weight: bold;">Usuário teve sua idade escondida</p>
         <button @click="mudarCor($event)">Alternando entre usuário Premium & normal</button>
@@ -27,6 +27,11 @@
             },
             emitirEventoDelete: function() {
                 this.$emit('meDelete', { idClient: this.client.id, component: this });
+            }
+        },
+        filters: {
+            processarEmail: function(value) {
+                return value.toUpperCase();
             }
         }
     }
