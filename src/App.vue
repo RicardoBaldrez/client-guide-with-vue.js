@@ -9,7 +9,7 @@
     <button @click="registerUser">Cadastrar</button>
     <p class="error-form" v-if="gaveError">Verifique os campos e tente novamente!!!</p>
     <hr>
-    <div v-for="(client, index) in clients" :key="client.id">
+    <div v-for="(client, index) in orderClients" :key="client.id">
       <p>{{ index }}</p>
       <Client :client="client" :showAge="client.showAge" @meDelete="deleteUser($event)" />
     </div>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+  import _ from 'lodash';
   import Client from './components/Client';
 
   export default {
@@ -57,6 +58,11 @@
         const id = $event.idClient;
         const fullClients = this.clients.filter(client => client.id != id);
         this.clients = fullClients;
+      }
+    },
+    computed: {
+      orderClients: function() {
+        return _.orderBy(this.clients, ['name'], ['asc']);
       }
     }
   }
