@@ -1,5 +1,6 @@
 <template>
     <div :class="isPremium ? 'client-premium' : 'client'">
+        <h4>Especial ID: {{ generatorIdSpecial }}</h4>
         <h4>Nome: {{ client.name }} </h4>
         <hr>
         <p>Email: {{ client.email | processarEmail }}</p>
@@ -32,6 +33,11 @@
         filters: {
             processarEmail: function(value) {
                 return value.toUpperCase();
+            }
+        },
+        computed: {
+            generatorIdSpecial: function() {
+                return (this.client.name + this.client.id + 182);
             }
         }
     }
